@@ -22,11 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         val firstTextField = findViewById<EditText>(R.id.firstTextField)
         val secondTextField = findViewById<EditText>(R.id.secondTextField)
+
         val additionButton = findViewById<Button>(R.id.additionButton)
         val subtractionButton = findViewById<Button>(R.id.subtractionButton)
         val multiplicationButton = findViewById<Button>(R.id.multiplicationButton)
         val divisionButton = findViewById<Button>(R.id.divisionButton)
 
+        // Button Clicked -> Create an intent to navigate to CalculatorResult and pass the result after calculation
         additionButton.setOnClickListener {
             val firstNum = Integer.parseInt(firstTextField.text.toString())
             val secondNum = Integer.parseInt(secondTextField.text.toString())
@@ -55,8 +57,14 @@ class MainActivity : AppCompatActivity() {
             val firstNum = Integer.parseInt(firstTextField.text.toString())
             val secondNum = Integer.parseInt(secondTextField.text.toString())
             val intent = Intent(this, CalculatorResult::class.java)
-            intent.putExtra("RESULT_MESSAGE",
-                "Result: " + (firstNum / secondNum).toString())
+            if(secondNum == 0) {
+                intent.putExtra("RESULT_MESSAGE",
+                    "Division by 0 is not allowed.")
+            }
+            else {
+                intent.putExtra("RESULT_MESSAGE",
+                    "Result: " + (firstNum.toDouble() / secondNum).toString())
+            }
             startActivity(intent)
         }
     }

@@ -18,6 +18,7 @@ class CalculatorResult : AppCompatActivity() {
             insets
         }
 
+        // Retrieve the data passed from MainActivity and display the result
         val message = intent.getStringExtra("RESULT_MESSAGE")
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
         resultTextView.text = message
